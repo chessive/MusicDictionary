@@ -29,7 +29,6 @@ $(document).ready(function() {
 		param.name = $("#cond_name").val();
 		param.title = $("#cond_title").val();
 		
-		
 		console.log(param);
 		
 		if(search_menu == "artist"){
@@ -41,6 +40,7 @@ $(document).ready(function() {
 					
                 	console.log(data);
             		console.log(data.length);
+            		$()
 
 				}
 			});
@@ -54,8 +54,8 @@ $(document).ready(function() {
 </script>
 
 </head>
-
 <body>
+
 
 	<nav class="navbar navbar-inverse">
 		<div class="container-fluid">
@@ -71,7 +71,7 @@ $(document).ready(function() {
 				<li><a href="#">작사가</a></li>
 				<li><a href="#">편곡가</a></li>
 			</ul>
-			<form class="navbar-form navbar-right" >
+			<form class="navbar-form navbar-right">
 				<div class="input-group">
 					<input type="text" class="form-control" placeholder="Search">
 					<div class="input-group-btn">
@@ -84,7 +84,6 @@ $(document).ready(function() {
 		</div>
 	</nav>
 
-<page-content>
 	<header class="header">
 		<div class="text-vertical-center">
 			<h1>음악 대백과사전</h1>
@@ -122,7 +121,7 @@ $(document).ready(function() {
 
 	<!--  조건 추가 부분 -->
 	
-	<div id = "add_condition"> </div>
+	<div id = "condition"> </div>
 	
 	<!--  조건 추가 버튼 -->
 	<div class="container" align=center>
@@ -130,7 +129,6 @@ $(document).ready(function() {
 		<button type="button" class="btn btn-default btn-lg active ">새로운 조건 추가</button>
 		</div>
 	</div>
-</page-content>
 
 </body>
 </html>
