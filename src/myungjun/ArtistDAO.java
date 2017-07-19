@@ -26,7 +26,6 @@ public class ArtistDAO {
 		Connection conn = null;
 		PreparedStatement pstm = null;
 		ResultSet rs = null;
-		int mem_num;
 		ArrayList<ArtistVO> artists = new ArrayList<ArtistVO>();
 		ArtistVO artist = null;
 		try {
@@ -89,7 +88,4 @@ public class ArtistDAO {
 		return artists;
 	}
 
-	public static void main(String[] args) {
-		ArtistDAO artists = new ArtistDAO();
-	}
 }
