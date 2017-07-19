@@ -33,14 +33,14 @@ public class SingerDAO {
 			PreparedStatement pstm = null;
 			ResultSet rs = null;
 			ArrayList<SingerVO> singers = new ArrayList<SingerVO>();
-			SingerVO singer = new SingerVO();			
+			SingerVO singer = null;			
 			try{
 				conn = getConnection();
 				pstm = conn.prepareStatement("select * from singer where singer_name like ?");
 				pstm.setString(1, "%" + name + "%");
 				rs =pstm.executeQuery();
 					while(rs.next()){
-						
+						singer = new SingerVO();
 						singer.setSinger_id(rs.getInt("SINGER_ID")); 
 						singer.setSinger_name(rs.getString("SINGER_NAME")); 
 						singer.setBirth_date(rs.getString("birth_date")); 

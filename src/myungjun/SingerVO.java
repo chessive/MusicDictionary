@@ -67,5 +67,11 @@ public class SingerVO {
 	public void setCount(int count) {
 		this.count = count;
 	}
+	@Override
+	public String toString() {
+		return "SingerVO [singer_id=" + singer_id + ", singer_name=" + singer_name + ", birth_date=" + birth_date
+				+ ", artist_id_1=" + artist_id_1 + ", artist_id_2=" + artist_id_2 + ", artist_id_3=" + artist_id_3
+				+ ", artist_id_4=" + artist_id_4 + ", rating_id=" + rating_id + ", count=" + count + "]";
+	}
 	
 }

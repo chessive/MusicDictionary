@@ -33,14 +33,14 @@ public class RemakerDAO {
 			PreparedStatement pstm = null;
 			ResultSet rs = null;
 			ArrayList<RemakerVO> remakers = new ArrayList<RemakerVO>();
-			RemakerVO remaker = new RemakerVO();			
+			RemakerVO remaker = null;			
 			try{
 				conn = getConnection();
 				pstm = conn.prepareStatement("select * from remaker where remaker_name like ?");
 				pstm.setString(1, "%" + name + "%");
 				rs =pstm.executeQuery();
 					while(rs.next()){
-						
+						remaker = new RemakerVO();
 						remaker.setRemaker_id(rs.getString("REMAKER_ID")); 
 						remaker.setRemaker_name(rs.getString("REMAKER_NAME")); 
 						remaker.setRating_id(rs.getInt("RATING_ID"));

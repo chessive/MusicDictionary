@@ -33,14 +33,14 @@ public class ComposerDAO {
 			PreparedStatement pstm = null;
 			ResultSet rs = null;
 			ArrayList<ComposerVO> composers = new ArrayList<ComposerVO>();
-			ComposerVO composer = new ComposerVO();			
+			ComposerVO composer = null;		
 			try{
 				conn = getConnection();
 				pstm = conn.prepareStatement("select * from composer where composer_name like ?");
 				pstm.setString(1, "%" + name + "%");
 				rs =pstm.executeQuery();
 					while(rs.next()){
-						
+						composer = new ComposerVO();
 						composer.setComposer_id(rs.getString("COMPOSER_ID")); 
 						composer.setComposer_name(rs.getString("COMPOSER_NAME")); 
 						composer.setRating_id(rs.getInt("RATING_ID"));

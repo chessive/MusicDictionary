@@ -32,5 +32,10 @@ public class RemakerVO {
 	}
 	public void setCount(int count) {
 		this.count = count;
+	}
+	@Override
+	public String toString() {
+		return "RemakerVO [remaker_id=" + remaker_id + ", remaker_name=" + remaker_name + ", rating_id=" + rating_id
+				+ ", count=" + count + "]";
 	}		
 }

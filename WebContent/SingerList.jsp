@@ -5,13 +5,13 @@
 <%@ page import="service.*" %>
 
 <%
-	ArrayList<ArtistVO> artists = new ArrayList<ArtistVO>();	
-	ArtistDAO dao = new ArtistDAO();
+	ArrayList<SingerVO> singers = new ArrayList<SingerVO>();	
+	SingerDAO dao = new SingerDAO();
 	String name = null; 
 
 	name =	request.getParameter("name");	
-	artists = dao.searchArtist(name);
+	singers = dao.searchSinger(name);
 	
 
-	String json = Converter.convertToJson(artists);
+	String json = Converter.convertToJson(singers);
 %><%=json %>

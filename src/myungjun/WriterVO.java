@@ -33,5 +33,10 @@ public class WriterVO {
 	public void setCount(int count) {
 		this.count = count;
 	}
+	@Override
+	public String toString() {
+		return "WriterVO [writer_id=" + writer_id + ", writer_name=" + writer_name + ", rating_id=" + rating_id
+				+ ", count=" + count + "]";
+	}
 	
 }

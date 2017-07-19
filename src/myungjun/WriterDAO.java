@@ -33,14 +33,14 @@ public class WriterDAO {
 			PreparedStatement pstm = null;
 			ResultSet rs = null;
 			ArrayList<WriterVO> writers = new ArrayList<WriterVO>();
-			WriterVO writer = new WriterVO();			
+			WriterVO writer = null;			
 			try{
 				conn = getConnection();
 				pstm = conn.prepareStatement("select * from writer where writer_name like ?");
 				pstm.setString(1, "%" + name + "%");
 				rs =pstm.executeQuery();
 					while(rs.next()){
-						
+						writer = new WriterVO();
 						writer.setWriter_id(rs.getString("WRITER_ID")); 
 						writer.setWriter_name(rs.getString("WRITER_NAME")); 
 						writer.setRating_id(rs.getInt("RATING_ID"));

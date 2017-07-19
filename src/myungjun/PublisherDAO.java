@@ -33,18 +33,17 @@ public class PublisherDAO {
 			PreparedStatement pstm = null;
 			ResultSet rs = null;
 			ArrayList<PublisherVO> publishers = new ArrayList<PublisherVO>();
-			PublisherVO publisher = new PublisherVO();			
+			PublisherVO publisher = null;	
 			try{
 				conn = getConnection();
 				pstm = conn.prepareStatement("select * from publisher where publisher_name like ?");
 				pstm.setString(1, "%" + name + "%");
 				rs =pstm.executeQuery();
 					while(rs.next()){
-						
+						publisher= new PublisherVO();
 						publisher.setPublisher_name(rs.getString("PUBLISHER_NAME")); 
 						publisher.setCeo_name(rs.getString("CEO_NAME")); 
 						publisher.setEstablish_date(rs.getString("ESTABLISH_DATE")); 
-						publisher.setRating_id(rs.getInt("RATING_ID"));
 						publisher.setCount(rs.getInt("COUNT"));
 						
 						publishers.add(publisher);

@@ -33,5 +33,10 @@ public class ComposerVO {
 	public void setCount(int count) {
 		this.count = count;
 	}
+	@Override
+	public String toString() {
+		return "ComposerVO [composer_id=" + composer_id + ", composer_name=" + composer_name + ", rating_id="
+				+ rating_id + ", count=" + count + "]";
+	}
 	
 }
