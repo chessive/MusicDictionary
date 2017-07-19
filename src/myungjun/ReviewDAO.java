@@ -63,5 +63,37 @@ public class ReviewDAO {
 
 		
 	}
-	
+	public ArrayList<ReviewVO> searchReview(Integer rating_id) {
+		Connection conn = null;
+		PreparedStatement pstm = null;
+		ResultSet rs = null;
+		ArrayList<ReviewVO> reviews = new ArrayList<ReviewVO>();
+		ReviewVO review = null;			
+		try{
+			conn = getConnection();
+			pstm = conn.prepareStatement("select * from review where RATING_ID =?");
+			pstm.setInt(1, rating_id);
+			rs =pstm.executeQuery();
+				while(rs.next()){
+					review = new ReviewVO();
+					review.setRating(rs.getInt("RATING")); 
+					review.setReview_comment(rs.getString("REVIEW_COMMENT"));
+					
+					reviews.add(review);
+				}
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally {
+			try {
+				if (pstm != null)
+					pstm.close();
+				if (conn != null)
+					conn.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+
+		return reviews;
+	}
 }
