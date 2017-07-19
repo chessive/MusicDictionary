@@ -16,7 +16,7 @@
   <span class="input">
     <input type="radio" name="star-input" id="p1" value="1"><label for="p1">1</label>
     <input type="radio" name="star-input" id="p2" value="2"><label for="p2">2</label>
-    <input type="radio" name="star-input" id="p3" value="3"><label for="p3">3</label>
+    <input type="radio" name="star-input"  id="p3" value="3"><label for="p3">3</label>
     <input type="radio" name="star-input" id="p4" value="4"><label for="p4">4</label>
     <input type="radio" name="star-input" id="p5" value="5"><label for="p5">5</label>
     <input type="radio" name="star-input" id="p6" value="6"><label for="p6">6</label>

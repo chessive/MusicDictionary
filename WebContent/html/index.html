@@ -19,6 +19,7 @@
 <!--  검색 클릭시 -->
 <script type="text/javascript">
 $(document).ready(function() {
+	
 	$("#search_button").click(function() {
 		var search_menu = $("#sel1 > option:selected").val();
 		
@@ -37,11 +38,9 @@ $(document).ready(function() {
 				url : "/gitProject_md/ArtistList.jsp",
 				type : "GET",
 				data : param,
-				success : function(data) {
-					
+				success : function(data) {					
                 	console.log(data);
             		console.log(data.length);
-
 				}
 			});
 		}
@@ -63,24 +62,14 @@ $(document).ready(function() {
 				<a class="navbar-brand" href="#">음악 대백과사전</a>
 			</div>
 			<ul class="nav navbar-nav">
-				<li class="active"><a href="#">홈</a></li>
-				<li><a href="#">가수</a></li>
-				<li><a href="#">노래</a></li>
-				<li><a href="#">앨범</a></li>
-				<li><a href="#">작곡가</a></li>
-				<li><a href="#">작사가</a></li>
-				<li><a href="#">편곡가</a></li>
+				<li class="active"><a href="index.html">홈</a></li>
+				<li><a href="search_list.jsp?menu=artist">가수</a></li>
+				<li><a href="search_list.jsp?menu=song">노래</a></li>
+				<li><a href="search_list.jsp?menu=album">앨범</a></li>
+				<li><a href="search_list.jsp?menu=writer">작곡가</a></li>
+				<li><a href="search_list.jsp?menu=composer">작사가</a></li>
+				<li><a href="search_list.jsp?menu=remaker">편곡가</a></li>
 			</ul>
-			<form class="navbar-form navbar-right" >
-				<div class="input-group">
-					<input type="text" class="form-control" placeholder="Search">
-					<div class="input-group-btn">
-						<button class="btn btn-default" type="submit">
-							<i class="glyphicon glyphicon-search"></i>
-						</button>
-					</div>
-				</div>
-			</form>
 		</div>
 	</nav>
 
