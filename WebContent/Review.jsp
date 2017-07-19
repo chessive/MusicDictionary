@@ -6,21 +6,27 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Review page</title>
 
+<script src="js/rating.js"></script>
+<link href="css/rating.css" rel="stylesheet">
+
 </head>
 <body>
 <form action = "tempController.jsp" method = "post">
-평점 : <select name="rating">
-		<option value ="1">1점
-		<option value ="2">2점
-		<option value ="3">3점
-		<option value ="4">4점
-		<option value ="5">5점
-		<option value ="6">6점
-		<option value ="7">7점
-		<option value ="8">8점
-		<option value ="9">9점
-		<option value ="10">10점
-</select><br/>
+평점 : <span class="star-input">
+  <span class="input">
+    <input type="radio" name="star-input" id="p1" value="1"><label for="p1">1</label>
+    <input type="radio" name="star-input" id="p2" value="2"><label for="p2">2</label>
+    <input type="radio" name="star-input" id="p3" value="3"><label for="p3">3</label>
+    <input type="radio" name="star-input" id="p4" value="4"><label for="p4">4</label>
+    <input type="radio" name="star-input" id="p5" value="5"><label for="p5">5</label>
+    <input type="radio" name="star-input" id="p6" value="6"><label for="p6">6</label>
+    <input type="radio" name="star-input" id="p7" value="7"><label for="p7">7</label>
+    <input type="radio" name="star-input" id="p8" value="8"><label for="p8">8</label>
+    <input type="radio" name="star-input" id="p9" value="9"><label for="p9">9</label>
+    <input type="radio" name="star-input" id="p10" value="10"><label for="p10">10</label>
+  </span>
+  <output for="star-input"><b></b></output>
+</span><br/>
 댓글 : <br/>
 <textarea rows="20" cols="40" name = "review_comment"></textarea>
 <input type="submit" value="입력">

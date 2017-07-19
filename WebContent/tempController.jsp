@@ -3,7 +3,7 @@
     pageEncoding="UTF-8"%>
 <%
 
-
+request.setCharacterEncoding("utf-8");
 int rating = Integer.parseInt(request.getParameter("rating"));
 String review_comment = request.getParameter("review_comment");
 
