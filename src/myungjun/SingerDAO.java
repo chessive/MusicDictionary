@@ -28,7 +28,7 @@ public class SingerDAO {
 			return conn;
 		}
 		
-		public ArrayList<SingerVO> searchSinger(String name) {
+		public ArrayList<SingerVO> searchSinger(SingerVO input_singer) {
 			Connection conn = null;
 			PreparedStatement pstm = null;
 			ResultSet rs = null;
@@ -37,7 +37,7 @@ public class SingerDAO {
 			try{
 				conn = getConnection();
 				pstm = conn.prepareStatement("select * from singer where singer_name like ?");
-				pstm.setString(1, "%" + name + "%");
+				pstm.setString(1, "%" + input_singer.getSinger_name() + "%");
 				rs =pstm.executeQuery();
 					while(rs.next()){
 						singer = new SingerVO();

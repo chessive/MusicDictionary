@@ -28,7 +28,7 @@ public class WriterDAO {
 			return conn;
 		}
 		
-		public ArrayList<WriterVO> searchWriter(String name) {
+		public ArrayList<WriterVO> searchWriter(WriterVO input_writer) {
 			Connection conn = null;
 			PreparedStatement pstm = null;
 			ResultSet rs = null;
@@ -37,7 +37,7 @@ public class WriterDAO {
 			try{
 				conn = getConnection();
 				pstm = conn.prepareStatement("select * from writer where writer_name like ?");
-				pstm.setString(1, "%" + name + "%");
+				pstm.setString(1, "%" + input_writer.getWriter_name() + "%");
 				rs =pstm.executeQuery();
 					while(rs.next()){
 						writer = new WriterVO();

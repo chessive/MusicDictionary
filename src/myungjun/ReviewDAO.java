@@ -63,7 +63,7 @@ public class ReviewDAO {
 
 		
 	}
-	public ArrayList<ReviewVO> searchReview(Integer rating_id) {
+	public ArrayList<ReviewVO> searchReview(ReviewVO input_review) {
 		Connection conn = null;
 		PreparedStatement pstm = null;
 		ResultSet rs = null;
@@ -72,7 +72,7 @@ public class ReviewDAO {
 		try{
 			conn = getConnection();
 			pstm = conn.prepareStatement("select * from review where RATING_ID =?");
-			pstm.setInt(1, rating_id);
+			pstm.setInt(1, input_review.getRating());
 			rs =pstm.executeQuery();
 				while(rs.next()){
 					review = new ReviewVO();

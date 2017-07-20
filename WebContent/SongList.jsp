@@ -6,11 +6,12 @@
 
 <%
 	ArrayList<SongVO> songs = new ArrayList<SongVO>();	
+	SongVO song = new SongVO();
 	SongDAO dao = new SongDAO();
 	String name = null; 
-
-	name =	request.getParameter("name");	
-	songs = dao.searchSong(name);
+	name = request.getParameter("name");
+	song.setName(name);	
+	songs = dao.searchSong(song);
 	
 
 	String json = Converter.convertToJson(songs);

@@ -22,7 +22,7 @@ public class SongDAO {
 		return conn;
 	}
 
-	public ArrayList<SongVO> searchSong(String name) {
+	public ArrayList<SongVO> searchSong(SongVO input_song) {
 		Connection conn = null;
 		PreparedStatement pstm = null;
 		ResultSet rs = null;
@@ -31,7 +31,7 @@ public class SongDAO {
 		try {
 			conn = getConnection();
 			pstm = conn.prepareStatement("select * from song where NAME like ?");
-			pstm.setString(1, "%" + name + "%");
+			pstm.setString(1, "%" + input_song.getName() + "%");
 			rs = pstm.executeQuery();
 
 			while (rs.next()) {
@@ -124,8 +124,5 @@ public class SongDAO {
 		return songs;
 	}
 
-	public static void main(String[] args) {
-		SongDAO songs = new SongDAO();
-		System.out.println(songs.searchSong("고"));
-	}
+	
 }

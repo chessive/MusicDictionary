@@ -6,11 +6,12 @@
 
 <%
 	ArrayList<WriterVO> writers = new ArrayList<WriterVO>();	
+	WriterVO writer = new WriterVO();	
 	WriterDAO dao = new WriterDAO();
 	String name = null; 
 
-	name =	request.getParameter("name");	
-	writers = dao.searchWriter(name);
+	writer.setWriter_name((request.getParameter("name")));	
+	writers = dao.searchWriter(writer);
 	
 
 	String json = Converter.convertToJson(writers);

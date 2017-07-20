@@ -28,7 +28,7 @@ public class RemakerDAO {
 			return conn;
 		}
 		
-		public ArrayList<RemakerVO> searchRemaker(String name) {
+		public ArrayList<RemakerVO> searchRemaker(RemakerVO input_remaker) {
 			Connection conn = null;
 			PreparedStatement pstm = null;
 			ResultSet rs = null;
@@ -37,7 +37,7 @@ public class RemakerDAO {
 			try{
 				conn = getConnection();
 				pstm = conn.prepareStatement("select * from remaker where remaker_name like ?");
-				pstm.setString(1, "%" + name + "%");
+				pstm.setString(1, "%" + input_remaker.getRemaker_name() + "%");
 				rs =pstm.executeQuery();
 					while(rs.next()){
 						remaker = new RemakerVO();

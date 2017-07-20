@@ -8,7 +8,7 @@ public class ReviewService {
 	public void reviewInsert(ReviewVO review){
 		dao.insertReview(review);
 	}
-	public void reviewSearch(Integer rating_id){
-		dao.searchReview(rating_id);
+	public void reviewSearch(ReviewVO review){
+		dao.searchReview(review);
 	}
 }

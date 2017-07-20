@@ -8,11 +8,12 @@ request.setCharacterEncoding("utf-8");
 //rating과 comment불러오기
 int rating = Integer.parseInt(request.getParameter("rating"));
 String review_comment = request.getParameter("review_comment");
+ReviewVO review = new ReviewVO(rating, review_comment);
+
 //rating_id불러오기
-//int rating_id = (int)(session.getValue("rating_id"));
+//review.setRating((int)(session.getValue("rating_id")));
 
 //불러온 rating과 comment를 session에 입력
-ReviewVO review = new ReviewVO(rating, review_comment);
 session.setAttribute("review", review);
 
 //서비스객체생성

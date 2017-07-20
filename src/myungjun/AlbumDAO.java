@@ -22,7 +22,7 @@ public class AlbumDAO {
 		return conn;
 	}
 
-	public ArrayList<AlbumVO> searchAlbum(String name) {
+	public ArrayList<AlbumVO> searchAlbum(AlbumVO input_album) {
 		Connection conn = null;
 		PreparedStatement pstm = null;
 		ResultSet rs = null;
@@ -31,7 +31,7 @@ public class AlbumDAO {
 		try {
 			conn = getConnection();
 			pstm = conn.prepareStatement("select * from album where ALBUM_NAME like ?");
-			pstm.setString(1, "%" + name + "%");
+			pstm.setString(1, "%" + input_album.getAlbum_name() + "%");
 			rs = pstm.executeQuery();
 
 			while (rs.next()) {

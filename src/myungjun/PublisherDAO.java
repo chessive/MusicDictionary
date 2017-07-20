@@ -28,7 +28,7 @@ public class PublisherDAO {
 			return conn;
 		}
 		
-		public ArrayList<PublisherVO> searchPublisher(String name) {
+		public ArrayList<PublisherVO> searchPublisher(PublisherVO input_putblisher) {
 			Connection conn = null;
 			PreparedStatement pstm = null;
 			ResultSet rs = null;
@@ -37,7 +37,7 @@ public class PublisherDAO {
 			try{
 				conn = getConnection();
 				pstm = conn.prepareStatement("select * from publisher where publisher_name like ?");
-				pstm.setString(1, "%" + name + "%");
+				pstm.setString(1, "%" + input_putblisher.getPublisher_name() + "%");
 				rs =pstm.executeQuery();
 					while(rs.next()){
 						publisher= new PublisherVO();

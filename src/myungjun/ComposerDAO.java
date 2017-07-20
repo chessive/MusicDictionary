@@ -28,7 +28,7 @@ public class ComposerDAO {
 			return conn;
 		}
 		
-		public ArrayList<ComposerVO> searchComposer(String name) {
+		public ArrayList<ComposerVO> searchComposer(ComposerVO input_composer) {
 			Connection conn = null;
 			PreparedStatement pstm = null;
 			ResultSet rs = null;
@@ -37,7 +37,7 @@ public class ComposerDAO {
 			try{
 				conn = getConnection();
 				pstm = conn.prepareStatement("select * from composer where composer_name like ?");
-				pstm.setString(1, "%" + name + "%");
+				pstm.setString(1, "%" + input_composer.getComposer_name() + "%");
 				rs =pstm.executeQuery();
 					while(rs.next()){
 						composer = new ComposerVO();
