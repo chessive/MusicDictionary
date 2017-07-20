@@ -40,7 +40,6 @@
 
 <script type="text/javascript">
 	$(document).ready(function() {
-
 		var menu = getUrlParameter('menu');
 		var name = getUrlParameter('name');
 		
@@ -75,7 +74,7 @@
 
 		if (menu == "artist") {
 			menu_template_head = "<tr><th>#</th><th>이름</th><th>평점</th><th>조회수</th></tr>";
-			menu_template = "<tr><td>index</td><td>name</td><td>rating</td><td>count</td></tr>";
+			menu_template = "<tr data-href='site.com/whatever'><td>index</td><td>name</td><td>rating</td><td>count</td></tr>";
 	   		$("#table_head").empty();
 	   		$("#table_head").append(menu_template_head);
 				
@@ -135,8 +134,8 @@
 		}		
 
 		else if (menu == "song") {
-			menu_template_head = "<tr><th>#</th><th>노래명</th><th>아티스트명</th><th>평점</th><th>조회수</th></tr>";
-			menu_template = "<tr><td>index</td><td>name</td><td>artist</td><td>rating</td><td>count</td></tr>";
+			menu_template_head = "<tr><th>#</th><th>노래명</th><th>앨범명</th><th>아티스트명</th><th>평점</th><th>조회수</th></tr>";
+			menu_template = "<tr><td>index</td><td>name</td><td>album</td><td>artist</td><td>rating</td><td>count</td></tr>";
 	   		$("#table_head").empty();
 	   		$("#table_head").append(menu_template_head);
 				
@@ -161,6 +160,8 @@
 			   			s = menu_template;
  			   			s = s.replace("index", item.song_index);
 			   			s = s.replace("name", item.name);
+			   			s = s.replace("album", item.album_name);
+			   			s = s.replace("undefined", "");
 			   			s = s.replace("artist", item.artist_name);
 			   			s = s.replace("rating", item.rating_id);
 			   			s = s.replace("count", item.count);
@@ -255,11 +256,19 @@
 					console.log(str);
 				}
 			});
-		}
+		} // table searching END
 		
-
-
 	});
+	
+/* 
+ */
+	$(document).ready(function() {
+	    $('table tr').click(function(){
+	        window.location = $(this).data('href');
+	        return false;
+	    });
+	});
+    
 </script>
 
 
@@ -285,11 +294,10 @@
 	</nav>
 
 	<div class="container  table-responsive">
-		<table id="table_menu" class="table">
+		<table id="table_menu" class="table  table-hover">
 			<thead id="table_head">
 			</thead>
 			<tbody id="table_body">
-
 			</tbody>
 		</table>
 	</div>
