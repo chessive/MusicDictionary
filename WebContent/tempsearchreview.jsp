@@ -1,15 +1,20 @@
-<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.*"%>
 <%@page import="myungjun.*"%>
 <%@page import="service.*"%><%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 <%
+int temp_id;
+
 request.setCharacterEncoding("utf-8");
+
+temp_id = Integer.parseInt(request.getParameter("rating_id"));
+
 ReviewService service = new ReviewService();
 ReviewVO review = new ReviewVO();
 //임시
-review.setRating_id(1);
+review.setRating_id(temp_id);
 review.setRating(2);
 review.setReview_comment("우와");
 
