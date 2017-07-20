@@ -27,8 +27,6 @@ public class ReviewDAO {
 		ResultSet rs = null;
 		int temp_count;
 				
-		ArrayList<ArtistVO> artists = new ArrayList<ArtistVO>();
-		ArtistVO artist = null;
 		try {
 			conn = getConnection();
 			
@@ -41,10 +39,11 @@ public class ReviewDAO {
 			pstm.setInt(1, temp_count);
 			pstm.executeQuery();
 			
-			pstm = conn.prepareStatement("insert into review(CONTENT_ID, rating, review_comment) values(?,?,?)");
+			pstm = conn.prepareStatement("insert into review(CONTENT_ID, rating_id, rating, review_comment) values(?,?,?,?)");
 			pstm.setInt(1, temp_count);
-			pstm.setInt(2, review.getRating());
-			pstm.setString(3, review.getReview_comment());
+			pstm.setInt(2, review.getRating_id());
+			pstm.setInt(3, review.getRating());
+			pstm.setString(4, review.getReview_comment());
 			pstm.executeUpdate();
 
 		
@@ -72,7 +71,7 @@ public class ReviewDAO {
 		try{
 			conn = getConnection();
 			pstm = conn.prepareStatement("select * from review where RATING_ID =?");
-			pstm.setInt(1, input_review.getRating());
+			pstm.setInt(1, input_review.getRating_id());
 			rs =pstm.executeQuery();
 				while(rs.next()){
 					review = new ReviewVO();

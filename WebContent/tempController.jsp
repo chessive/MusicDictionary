@@ -1,3 +1,4 @@
+<%@page import="java.util.ArrayList"%>
 <%@page import="myungjun.*"%>
 <%@page import="service.*"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -6,15 +7,18 @@
 
 request.setCharacterEncoding("utf-8");
 //rating과 comment불러오기
-int rating = Integer.parseInt(request.getParameter("rating"));
+int rating =0;
+rating= Integer.parseInt(request.getParameter("star-input"));
 String review_comment = request.getParameter("review_comment");
-ReviewVO review = new ReviewVO(rating, review_comment);
-
+//int rating_id = (int)(session.getValue("rating_id")); //희건아 rating_id 불러오는거에 따라 session으로 할지 request.getParameter로 할지 정해줘
+int rating_id =1;
+ReviewVO review = new ReviewVO();
+review.setRating(rating);
+review.setReview_comment(review_comment);
 //rating_id불러오기
-//review.setRating((int)(session.getValue("rating_id")));
 
-//불러온 rating과 comment를 session에 입력
-session.setAttribute("review", review);
+review.setRating_id(rating_id);
+
 
 //서비스객체생성
 ReviewService service = new ReviewService();
@@ -22,7 +26,9 @@ ReviewService service = new ReviewService();
 
 service.reviewInsert(review);//삽입서비스
 
-//service.reviewSearch(rating_id);//검색서비스
+ArrayList<ReviewVO> reviews = new ArrayList<ReviewVO>();
+reviews = service.reviewSearch(review);//검색서비스
+session.setAttribute("reviews", reviews); //희건아 여기서 reviews를 받아서 처리해줘
 
 RequestDispatcher rd =  request.getRequestDispatcher("board.jsp");
 rd.forward(request, response);
