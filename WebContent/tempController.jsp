@@ -12,7 +12,7 @@ int rating =0;
 rating= Integer.parseInt(request.getParameter("star-input"));
 String review_comment = request.getParameter("review_comment");
 //int rating_id = (int)(session.getValue("rating_id")); //희건아 rating_id 불러오는거에 따라 session으로 할지 request.getParameter로 할지 정해줘
-int rating_id =1;
+int rating_id =23;
 ReviewVO review = new ReviewVO();
 review.setRating(rating);
 review.setReview_comment(review_comment);

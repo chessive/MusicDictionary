@@ -20,58 +20,43 @@
 <!-- Custom CSS -->
 <link href="../css/style.css" rel="stylesheet">
 
-<!--  외장 함수들 유용한것들로만 -->
-<script type="text/javascript">
-	// Parameter 갖고오는 놈임. get 사용 가능.
-	var getUrlParameter = function getUrlParameter(sParam) {
-		var sPageURL = decodeURIComponent(window.location.search.substring(1)), sURLVariables = sPageURL
-				.split('&'), sParameterName, i;
+<% 
+ArrayList<ReviewVO> reviews = new ArrayList<ReviewVO>();
+	reviews = (ArrayList<ReviewVO>)session.getAttribute("reviews");
+String json = Converter.convertToJson(reviews);
+%>
 
-		for (i = 0; i < sURLVariables.length; i++) {
-			sParameterName = sURLVariables[i].split('=');
+<%=json%>
 
-			if (sParameterName[0] === sParam) {
-				return sParameterName[1] === undefined ? true
-						: sParameterName[1];
-			}
-		}
-	};
-	
-	// Json 데이터 소팅하는거임. int랑 string 가능.
-	
+<script type="text/javascript" src="../jquery.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function(){
+      $("#button").click(function(){
+          callAjax();
+      });
+    });
+    function callAjax(){
+        $.ajax({ 
+        	type :'post',
+        	data :{
+        		programmer : $('#programmer').val(),
+        		designer: $('#designer').val(),
+        		pm : $('#pm').val(),
+        		customer : $('#customer').val()
+        	},  
+	        url : './test3.jsp',
+	        dataType : 'json',
+	        success: whenSuccess,
+	        error: whenError
+     	});
+    }
+
 </script>
-
-<script type="text/javascript">
-	$(document).ready(function() {
-		var menu = getUrlParameter('menu');
-		var name = getUrlParameter('name');
-		
-		// name이 undefined일 경우 출력 안되서
-		if(name == undefined)
-			name = "";
-		
-		var s, str="";
-		var param = {};
-		//
-		
-		param.menu = "artist";
-		param.name = name;
-				
-		$.ajax({
-			url : "/gitProject_md/board.jsp",//여기 있는 url 변경 바람
-			type : "GET",
-			data : 	param,
-			success : function(data) {
-				console.log(data);
-			}
-		});
-	});
-</script>
-
 
 </head>
 <body>
 
+ </div>
 
 </body>
 </html>

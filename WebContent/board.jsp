@@ -14,7 +14,7 @@ ArrayList<ReviewVO> reviews = new ArrayList<ReviewVO>();
 	reviews = (ArrayList<ReviewVO>)session.getAttribute("reviews");
 String json = Converter.convertToJson(reviews);
 %>
-console.log(reviews);
+
 <%=json%>
 </body>
 </html>

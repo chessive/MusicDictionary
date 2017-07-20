@@ -9,7 +9,7 @@ request.setCharacterEncoding("utf-8");
 ReviewService service = new ReviewService();
 ReviewVO review = new ReviewVO();
 //임시
-review.setRating_id(324);
+review.setRating_id(1);
 review.setRating(2);
 review.setReview_comment("우와");
 
