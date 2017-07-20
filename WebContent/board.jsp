@@ -12,15 +12,9 @@
 <% //희건아 이거는 평점평균 내봤어 잘 참조해서 써보렴
 ArrayList<ReviewVO> reviews = new ArrayList<ReviewVO>();
 	reviews = (ArrayList<ReviewVO>)session.getAttribute("reviews");
-int sum =0;
-double average =0;
-	for(int i =0; i< reviews.size(); i++){
-		sum += reviews.get(i).getRating();
-		
-	}
-	average = sum/reviews.size();
 String json = Converter.convertToJson(reviews);
-%><%=json %><br>
-평점 : <%=average %> <!-- 얘가 평균이야  -->
+%>
+console.log(reviews);
+<%=json%>
 </body>
 </html>

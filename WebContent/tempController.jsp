@@ -3,6 +3,7 @@
 <%@page import="service.*"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
 <%
 
 request.setCharacterEncoding("utf-8");
@@ -16,20 +17,12 @@ ReviewVO review = new ReviewVO();
 review.setRating(rating);
 review.setReview_comment(review_comment);
 //rating_id불러오기
-
 review.setRating_id(rating_id);
-
-
 //서비스객체생성
 ReviewService service = new ReviewService();
-
-
 service.reviewInsert(review);//삽입서비스
 
-ArrayList<ReviewVO> reviews = new ArrayList<ReviewVO>();
-reviews = service.reviewSearch(review);//검색서비스
-session.setAttribute("reviews", reviews); //희건아 여기서 reviews를 받아서 처리해줘
-
-RequestDispatcher rd =  request.getRequestDispatcher("board.jsp");
+RequestDispatcher rd =  request.getRequestDispatcher("Review.jsp");
 rd.forward(request, response);
+
 %>

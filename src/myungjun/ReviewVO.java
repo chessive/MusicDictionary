@@ -31,7 +31,8 @@ public class ReviewVO {
 
 	@Override
 	public String toString() {
-		return "ReviewVO [rating=" + rating + ", review_comment=" + review_comment + "]";
+		return "ReviewVO [rating=" + rating + ", review_comment=" + review_comment + ", rating_id=" + rating_id + "]";
 	}
+
 	
 }

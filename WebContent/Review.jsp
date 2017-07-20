@@ -8,7 +8,15 @@
 
 <script src="js/rating.js"></script>
 <link href="css/rating.css" rel="stylesheet">
-
+<script type="text/javascript">
+window.onload = function() {
+    var list =  document.getElementsByTagName("input");
+    list[10].onclick = function() {
+            alert("입력되었습니다!");   
+        }
+    
+}
+</script>
 </head>
 <body>
 <form action = "tempController.jsp" method = "post">

@@ -75,6 +75,7 @@ public class ReviewDAO {
 			rs =pstm.executeQuery();
 				while(rs.next()){
 					review = new ReviewVO();
+					review.setRating_id(rs.getInt("RATING_ID")); 
 					review.setRating(rs.getInt("RATING")); 
 					review.setReview_comment(rs.getString("REVIEW_COMMENT"));
 					
