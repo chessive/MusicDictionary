@@ -42,6 +42,7 @@
 		var name = getUrlParameter('name');
 		var index = getUrlParameter('index');
 		
+		var result;		
 		
 		// name이 undefined일 경우 출력 안되서
 		if(name == undefined)
@@ -72,26 +73,154 @@
 		param.index = index;
 		console.log(menu);
 		console.log(name);
+
 		
-		if (name == undefined){
-			if(menu=="composer"){
-				$.ajax({
-					url : "/gitProject_md/searchService.jsp",
-					type : "GET",
-					data : 	param,
-					success : function(data) {
-						console.log(data);
-						data = JSON.parse(data);
-						console.log(data);
-					}
-				});
-			}			
-		}
+		if(menu=="song"){
+			$.ajax({
+				url : "/gitProject_md/searchService.jsp",
+				type : "GET",
+				data : 	param,
+				success : function(data) {
+					data = JSON.parse(data);
+					data.forEach(function(item, ind) {
+						if(item.song_index == index){
+							result = item;
+							console.log(item);
+							console.log(result);
+					   		console.log(result.name);
+						}
+					});
+
+			   		$("#content-title").empty;
+			   		$("#content-title").append(result.name);
+
+			   		console.log(result.name);
+			   		console.log("content title 추가됨");		
+				}
+			});
+		} // if문 song 종료.
+		
+		else if(menu=="artist"){
+			$.ajax({
+				url : "/gitProject_md/searchService.jsp",
+				type : "GET",
+				data : 	param,
+				success : function(data) {
+					data = JSON.parse(data);
+					data.forEach(function(item, ind) {
+						if(item.song_index == index){
+							result = item;
+							console.log(item);
+							console.log(result);
+						}
+					});
+
+			   		$("#content-title").empty;
+			   		$("#content-title").append(result.artist_name);
+
+			   		console.log(result.artist_name);
+			   		console.log("content title 추가됨");		
+				}
+			});
+		} // if문 artist 종료.
+
+		else if(menu=="composer"){
+			$.ajax({
+				url : "/gitProject_md/searchService.jsp",
+				type : "GET",
+				data : 	param,
+				success : function(data) {
+					data = JSON.parse(data);
+					data.forEach(function(item, ind) {
+						if(item.composer_id == index){
+							result = item;
+							console.log(item);
+							console.log(result);
+						}
+					});
+
+			   		$("#content-title").empty;
+		   			$("#content-title").append(result.composer_name);
+
+			   		console.log("content title 추가됨");		
+				}
+			});
+		} // if문 composer 종료.
+
+		else if(menu=="writer"){
+			$.ajax({
+				url : "/gitProject_md/searchService.jsp",
+				type : "GET",
+				data : 	param,
+				success : function(data) {
+					data = JSON.parse(data);
+					data.forEach(function(item, ind) {
+						if(item.writer_id == index){
+							result = item;
+							console.log(item);
+							console.log(result);
+						}
+					});
+
+			   		$("#content-title").empty;
+		   			$("#content-title").append(result.writer_name);
+
+			   		console.log("content title 추가됨");		
+				}
+			});
+		} // if문 writer 종료.
+		
+		else if(menu=="remaker"){
+			$.ajax({
+				url : "/gitProject_md/searchService.jsp",
+				type : "GET",
+				data : 	param,
+				success : function(data) {
+					data = JSON.parse(data);
+					data.forEach(function(item, ind) {
+						if(item.remaker_id == index){
+							result = item;
+							console.log(item);
+							console.log(result);
+						}
+					});
+
+			   		$("#content-title").empty;
+		   			$("#content-title").append(result.remaker_name);
+
+			   		console.log("content title 추가됨");		
+				}
+			});
+		} // if문 remaker 종료.
+		
+
+		else if(menu=="album"){
+			$.ajax({
+				url : "/gitProject_md/searchService.jsp",
+				type : "GET",
+				data : 	param,
+				success : function(data) {
+					data = JSON.parse(data);
+					data.forEach(function(item, ind) {
+						if(item.album_name == name){
+							result = item;
+							console.log(item);
+							console.log(result);
+						}
+					});
+
+			   		$("#content-title").empty;
+		   			$("#content-title").append(result.album_name);
+
+			   		console.log("content title 추가됨");		
+				}
+			});
+		} // if문 album 종료.
 		
 		<%		
-		String name = request.getParameter("name");
-		String menu = request.getParameter("menu");
-
+//		String name = request.getParameter("name");
+//		String menu = request.getParameter("menu");
+		
 		%>
 		
 		//////////////////////////  표 출력 부분 /////////////////////////////
@@ -158,7 +287,9 @@
 		<div class="row">
 			<div class="col-md-12  text-vertical-center">
 				<p class="lead">
-				   <h1> <%= name %> </h1>
+				   <h1 id = "content-title"> 
+				   
+				   </h1>
 				   <h3> </h3>
 				</p>
 			</div>
