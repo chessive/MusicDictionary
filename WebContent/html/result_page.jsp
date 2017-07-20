@@ -42,6 +42,7 @@
 		var name = getUrlParameter('name');
 		var index = getUrlParameter('index');
 		
+		// 이곳에 나중에 각 오브젝트 저장될 것임.
 		var result;		
 		
 		// name이 undefined일 경우 출력 안되서
@@ -228,28 +229,28 @@
 
 		if(menu=="artist")
 		{
-			sub_button_head_template = "<div class='col-md-3'><a class='list-group-item'  id='sub_button1'>주요정보</a></div>"
-				+ "<div class='col-md-3'><a class='list-group-item'  id='sub_button2'>앨범</a></div>"
-				+ "<div class='col-md-3'><a class='list-group-item'  id='sub_button3'>노래</a></div>"
-				+ "<div class='col-md-3'><a class='list-group-item'  id='sub_button4'>평점</a></div>";
+			sub_button_head_template = "<div class='col-md-3'><a class='list-group-item'  id='artist_info'>주요정보</a></div>"
+				+ "<div class='col-md-3'><a class='list-group-item'  id='artist_album'>앨범</a></div>"
+				+ "<div class='col-md-3'><a class='list-group-item'  id='artist_song'>노래</a></div>"
+				+ "<div class='col-md-3'><a class='list-group-item'  id='artist_rating'>평점</a></div>";
 		}
 		else if(menu=="writer" || menu=="composer" || menu=="remaker")
 		{
-			sub_button_head_template = "<div class='col-md-3'><a class='list-group-item'  id='sub_button1'>주요정보</a></div>"
-				+ "<div class='col-md-3'><a class='list-group-item'  id='sub_button2'>참여노래</a></div>"
-				+ "<div class='col-md-3'><a class='list-group-item'  id='sub_button3'>평점</a></div>"
-				+ "<div class='col-md-3'><a class='list-group-item'  id='sub_button4'>함께한 가수</a></div>";
+			sub_button_head_template = "<div class='col-md-3'><a class='list-group-item'  id='wcr_info'>주요정보</a></div>"
+				+ "<div class='col-md-3'><a class='list-group-item'  id='wcr_song'>참여노래</a></div>"
+				+ "<div class='col-md-3'><a class='list-group-item'  id='wcr_rating'>평점</a></div>"
+				+ "<div class='col-md-3'><a class='list-group-item'  id='wcr_singer'>함께한 가수</a></div>";
 		}		
 		else if(menu=="song")
 		{
-			sub_button_head_template = "<div class='col-md-6'><a class='list-group-item'  id='sub_button1'>주요정보</a></div>"
-				+ "<div class='col-md-6'><a class='list-group-item'  id='sub_button2'>평점</a></div>"
+			sub_button_head_template = "<div class='col-md-6'><a class='list-group-item'  id='song_info'>주요정보</a></div>"
+				+ "<div class='col-md-6'><a class='list-group-item'  id='song_rating'>평점</a></div>"
 		}
 		else if(menu=="album")
 		{
-			sub_button_head_template = "<div class='col-md-4'><a class='list-group-item'  id='sub_button1'>수록곡</a></div>"
-				+ "<div class='col-md-4'><a class='list-group-item'  id='sub_button2'>가수</a></div>"
-				+ "<div class='col-md-4'><a class='list-group-item'  id='sub_button3'>평점</a></div>"
+			sub_button_head_template = "<div class='col-md-4'><a class='list-group-item'  id='album_song'>수록곡</a></div>"
+				+ "<div class='col-md-4'><a class='list-group-item'  id='album_singer'>가수</a></div>"
+				+ "<div class='col-md-4'><a class='list-group-item'  id='album_rating'>평점</a></div>"
 		}		
 		
    		$("#sub_menu").empty;					
@@ -257,7 +258,87 @@
 		console.log(menu);
 		////////////////////////////////////////////////////////////////////
 
+		var sub_menu_state = 1;
+		var sub_content_html = "";
+		var sub_param = {};
+		var sub_result;
+		var sub_menu_head = "";
+		var sub_menu_template = "";
+		var sub_result_url = "";
+
+		// 정보창 쳤을 때
+			$(document).on("click", "#artist_info", function() {
+				console.log(result);
+				console.log(result.artist_name);
+	   			$("#sub_content").html("이름 : " + result.artist_name + "<br>");
+	   			$("#sub_content").append("데뷔날짜 : " + result.debut_date + "<br>");
+	   			if(result.member_num > 1)
+	   				$("#sub_content").append("멤버 수 : " + result.member_num + "<br>");
+	   			return false;
+		 });
+
+		// 가수 앨범 선택했을 때
+			$(document).on("click", "#artist_album", function() {
+				sub_param.menu = "album";
+				
+				$.ajax({
+					url : "/gitProject_md/searchService.jsp",
+					type : "GET",
+					data : sub_param,
+					success : function(data) {
+						data = JSON.parse(data);
+						console.log(data);
+						data.forEach(function(item, ind) {
+							if(item.artist_id_1 == result.artist_id){
+								result = item;
+								console.log(item);
+								console.log(result);
+							}
+						});
+
+					}
+				});
+		 });
+		
+			// 가수 노래 선택했을 때
+			$(document).on("click", "#artist_song", function() {
+				menu_template_head = "<tr><th>#</th><th>노래명</th><th>앨범명</th><th>아티스트명</th><th>평점</th><th>조회수</th></tr>";
+				menu_template = "<tr data-href='_site'><td>_index</td><td>_name</td><td>_album</td><td>_artist</td><td>_rating</td><td>_count</td></tr>";
+
+				sub_param.menu = "song";
+				
+				$("#sub_content").html("<table id='table_menu' class='table  table-hover'><thead id='table_head'></thead><tbody id='table_body'></tbody></table>");
+				$.ajax({
+					url : "/gitProject_md/searchService.jsp",
+					type : "GET",
+					data : sub_param,
+					success : function(data) {
+						data = JSON.parse(data);
+						data.forEach(function(item, ind) {							
+							if( ( item.artist_id_1 != undefined && item.artist_id_1 == result.artist_id )
+							| 	( item.artist_id_2 != undefined && item.artist_id_2 == result.artist_id )
+							)
+							{
+					   			sub_result = menu_template;
+					   			sub_result_url = "result_page.jsp?menu=song&index=" + item.song_index;
+		 			   			sub_result = sub_result.replace("_site", sub_result_url);
+		 			   			sub_result = sub_result.replace("_index", item.song_index);
+					   			sub_result = sub_result.replace("_name", item.name);
+					   			sub_result = sub_result.replace("_album", item.album_name);
+					   			sub_result = sub_result.replace("undefined", "");
+					   			sub_result = sub_result.replace("_artist", item.artist_name);
+					   			sub_result = sub_result.replace("_rating", item.rating_id);
+					   			sub_result = sub_result.replace("_count", item.count);
+						   		$("#table_body").append(sub_result);
+							}
+						});
+					}
+				});
+		 }); // 가수->노래 선택	on 이벤트 끝
+		
 	});
+	
+
 
 </script>
 
@@ -298,14 +379,19 @@
 		<div class="row"><br></div>
 		
 		<div class="row  text-center"  id = "sub_menu">
-
 		</div>
+
+		<div class="row"><br></div>
+		<div class="row"><br></div>
+		<div class="row"><br></div>
 		
 	</div>
+	
 
 
-	<div class="container  table-responsive">
-
+	<div class="container  well well-lg" >
+		<div class="text-vertical-center  col-md-12"  id = "sub_content">
+		</div>
 	</div>
 	
 </body>

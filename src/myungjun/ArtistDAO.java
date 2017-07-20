@@ -38,7 +38,7 @@ public class ArtistDAO {
 				artist = new ArtistVO();
 				artist.setArtist_id(rs.getInt("ARTIST_ID"));
 				artist.setArtist_name(rs.getString("ARTIST_NAME"));
-				artist.setDebut_date(rs.getString("DEBUT_DATE"));
+				artist.setDebut_date(rs.getString("DEBUT_DATE").substring(0, rs.getString("DEBUT_DATE").indexOf(" ") ) );
 				artist.setMember_num(rs.getInt("MEMBER_NUM"));
 				artist.setRating_id(rs.getInt("RATING_ID"));
 				artist.setCount(rs.getInt("COUNT"));
@@ -67,7 +67,6 @@ public class ArtistDAO {
 					artist.setSinger_id_1(rs.getString("SINGER_ID_1"));
 				}
 
-				System.out.println(artist);
 				artists.add(artist);
 
 			} // while end

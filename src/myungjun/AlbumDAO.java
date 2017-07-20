@@ -59,7 +59,6 @@ public class AlbumDAO {
 					album.setArtist_id_1(rs.getString("ARTIST_ID_1"));
 				}
 
-				System.out.println(album);
 				albums.add(album);
 
 			} // while end
