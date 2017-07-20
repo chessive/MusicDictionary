@@ -40,13 +40,16 @@
 
 		var menu = getUrlParameter('menu');
 		var name = getUrlParameter('name');
-		var id = getUrlParameter('id');
+		var index = getUrlParameter('index');
+		
 		
 		// name이 undefined일 경우 출력 안되서
 		if(name == undefined)
 			name = "";
 		if(menu == undefined)
 			menu = "artist";
+		
+		console.log(index);
 		
 		if(menu=="artist")
 			document.getElementById("li2").className = "active";
@@ -64,22 +67,34 @@
 		var s, str="";
 		
 		var param = {};
-		param.id = id;
+		param.name = name;
 		param.menu = menu;
+		param.index = index;
 		console.log(menu);
 		console.log(name);
+		
+		if (name == undefined){
+			if(menu=="composer"){
+				$.ajax({
+					url : "/gitProject_md/searchService.jsp",
+					type : "GET",
+					data : 	param,
+					success : function(data) {
+						console.log(data);
+						data = JSON.parse(data);
+						console.log(data);
+					}
+				});
+			}			
+		}
 		
 		<%		
 		String name = request.getParameter("name");
 		String menu = request.getParameter("menu");
-		if (name == null){
-			name = "김연우";
-		}
-		if(menu==null){
-			menu ="artist";
-		}		
+
 		%>
 		
+		//////////////////////////  표 출력 부분 /////////////////////////////
 		var sub_button_head_template = "";
 
 		if(menu=="artist")
@@ -111,8 +126,7 @@
    		$("#sub_menu").empty;					
    		$("#sub_menu").append(sub_button_head_template);
 		console.log(menu);
-		console.log(sub_button_head_template);
-		
+		////////////////////////////////////////////////////////////////////
 
 	});
 

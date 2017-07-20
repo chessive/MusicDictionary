@@ -60,7 +60,7 @@
 		else if(menu=="remaker")
 			document.getElementById("li7").className = "active";
 		
-		var s, str="";
+		var s, str="", result_url = "";
 		
 		var param = {};
 		param.name = name;
@@ -74,7 +74,7 @@
 
 		if (menu == "artist") {
 			menu_template_head = "<tr><th>#</th><th>이름</th><th>평점</th><th>조회수</th></tr>";
-			menu_template = "<tr data-href='site.com/whatever'><td>index</td><td>name</td><td>rating</td><td>count</td></tr>";
+			menu_template = "<tr data-href='_site'><td>_index</td><td>_name</td><td>_rating</td><td>_count</td></tr>";
 	   		$("#table_head").empty();
 	   		$("#table_head").append(menu_template_head);
 				
@@ -89,10 +89,12 @@
 					
 			   		data.forEach(function(item, index) {
 			   			s = menu_template;
- 			   			s = s.replace("index", item.artist_id);
-			   			s = s.replace("name", item.artist_name);
-			   			s = s.replace("rating", item.rating_id);
-			   			s = s.replace("count", item.count);
+			   			result_url = "result_page.jsp?menu=artist&name=" + item.artist_name;
+ 			   			s = s.replace("_site", result_url);
+ 			   			s = s.replace("_index", item.artist_id);
+			   			s = s.replace("_name", item.artist_name);
+			   			s = s.replace("_rating", item.rating_id);
+			   			s = s.replace("_count", item.count);
 			   			str += s;
 			   		});			
 			   		$("#table_body").empty;					
@@ -104,7 +106,7 @@
 		
 		else if (menu == "album") {
 			menu_template_head = "<tr><th>#</th><th>앨범명</th><th>아티스트명</th><th>평점</th><th>조회수</th></tr>";
-			menu_template = "<tr><td>index</td><td>name</td><td>artist</td><td>rating</td><td>count</td></tr>";
+			menu_template = "<tr data-href='_site'><td>_index</td><td>_name</td><td>_artist</td><td>_rating</td><td>_count</td></tr>";
 	   		$("#table_head").empty();
 	   		$("#table_head").append(menu_template_head);
 				
@@ -119,11 +121,13 @@
 					
 			   		data.forEach(function(item, index) {
 			   			s = menu_template;
- 			   			s = s.replace("index", item.album_id);
-			   			s = s.replace("name", item.album_name);
-			   			s = s.replace("artist", item.artist_name);
-			   			s = s.replace("rating", item.rating_id);
-			   			s = s.replace("count", item.count);
+			   			result_url = "result_page.jsp?menu=album&name=" + item.album_name;
+ 			   			s = s.replace("_site", result_url);
+ 			   			s = s.replace("_index", item.album_id);
+			   			s = s.replace("_name", item.album_name);
+			   			s = s.replace("_artist", item.artist_name);
+			   			s = s.replace("_rating", item.rating_id);
+			   			s = s.replace("_count", item.count);
 			   			str += s;
 			   		});			
 			   		$("#table_body").empty;					
@@ -135,7 +139,7 @@
 
 		else if (menu == "song") {
 			menu_template_head = "<tr><th>#</th><th>노래명</th><th>앨범명</th><th>아티스트명</th><th>평점</th><th>조회수</th></tr>";
-			menu_template = "<tr><td>index</td><td>name</td><td>album</td><td>artist</td><td>rating</td><td>count</td></tr>";
+			menu_template = "<tr data-href='_site'><td>_index</td><td>_name</td><td>_album</td><td>_artist</td><td>_rating</td><td>_count</td></tr>";
 	   		$("#table_head").empty();
 	   		$("#table_head").append(menu_template_head);
 				
@@ -158,13 +162,15 @@
 					
 			   		data.forEach(function(item, index) {
 			   			s = menu_template;
- 			   			s = s.replace("index", item.song_index);
-			   			s = s.replace("name", item.name);
-			   			s = s.replace("album", item.album_name);
+			   			result_url = "result_page.jsp?menu=song&index=" + item.song_index;
+ 			   			s = s.replace("_site", result_url);
+ 			   			s = s.replace("_index", item.song_index);
+			   			s = s.replace("_name", item.name);
+			   			s = s.replace("_album", item.album_name);
 			   			s = s.replace("undefined", "");
-			   			s = s.replace("artist", item.artist_name);
-			   			s = s.replace("rating", item.rating_id);
-			   			s = s.replace("count", item.count);
+			   			s = s.replace("_artist", item.artist_name);
+			   			s = s.replace("_rating", item.rating_id);
+			   			s = s.replace("_count", item.count);
 			   			str += s;
 			   		});			
 			   		$("#table_body").empty;					
@@ -175,7 +181,7 @@
 
 		else if (menu == "composer") {
 			menu_template_head = "<tr><th>이름</th><th>평점</th><th>조회수</th></tr>";
-			menu_template = "<tr><td>name</td><td>rating</td><td>count</td></tr>";
+			menu_template = "<tr data-href='_site'><td>_name</td><td>_rating</td><td>_count</td></tr>";
 	   		$("#table_head").empty();
 	   		$("#table_head").append(menu_template_head);
 				
@@ -190,9 +196,11 @@
 					
 			   		data.forEach(function(item, index) {
 			   			s = menu_template;
-			   			s = s.replace("name", item.composer_name);
-			   			s = s.replace("rating", item.rating_id);
-			   			s = s.replace("count", item.count);
+			   			result_url = "result_page.jsp?menu=composer&index=" + item.composer_id;
+ 			   			s = s.replace("_site", result_url);
+			   			s = s.replace("_name", item.composer_name);
+			   			s = s.replace("_rating", item.rating_id);
+			   			s = s.replace("_count", item.count);
 			   			str += s;
 			   		});			
 			   		$("#table_body").empty;					
@@ -203,7 +211,7 @@
 		}
 		else if (menu == "writer") {
 			menu_template_head = "<tr><th>이름</th><th>평점</th><th>조회수</th></tr>";
-			menu_template = "<tr><td>name</td><td>rating</td><td>count</td></tr>";
+			menu_template = "<tr data-href='_site'><td>_name</td><td>_rating</td><td>_count</td></tr>";
 	   		$("#table_head").empty();
 	   		$("#table_head").append(menu_template_head);
 				
@@ -218,9 +226,11 @@
 					
 			   		data.forEach(function(item, index) {
 			   			s = menu_template;
-			   			s = s.replace("name", item.writer_name);
-			   			s = s.replace("rating", item.rating_id);
-			   			s = s.replace("count", item.count);
+			   			result_url = "result_page.jsp?menu=writer&index=" + item.writer_id;
+ 			   			s = s.replace("_site", result_url);
+			   			s = s.replace("_name", item.writer_name);
+			   			s = s.replace("_rating", item.rating_id);
+			   			s = s.replace("_count", item.count);
 			   			str += s;
 			   		});			
 			   		$("#table_body").empty;					
@@ -231,7 +241,7 @@
 		}
 		else if (menu == "remaker") {
 			menu_template_head = "<tr><th>이름</th><th>평점</th><th>조회수</th></tr>";
-			menu_template = "<tr><td>name</td><td>rating</td><td>count</td></tr>";
+			menu_template = "<tr data-href='_site'><td>_name</td><td>_rating</td><td>_count</td></tr>";
 	   		$("#table_head").empty();
 	   		$("#table_head").append(menu_template_head);
 				
@@ -246,9 +256,11 @@
 					
 			   		data.forEach(function(item, index) {
 			   			s = menu_template;
-			   			s = s.replace("name", item.remaker_name);
-			   			s = s.replace("rating", item.rating_id);
-			   			s = s.replace("count", item.count);
+			   			result_url = "result_page.jsp?menu=remaker&index=" + item.remaker_id;
+ 			   			s = s.replace("_site", result_url);
+			   			s = s.replace("_name", item.remaker_name);
+			   			s = s.replace("_rating", item.rating_id);
+			   			s = s.replace("_count", item.count);
 			   			str += s;
 			   		});			
 			   		$("#table_body").empty;					
@@ -262,12 +274,11 @@
 	
 /* 
  */
-	$(document).ready(function() {
-	    $('table tr').click(function(){
-	        window.location = $(this).data('href');
+	$(document).on("click", "tr", function() {
+	        document.location = $(this).data('href');
+	        conssole.log(data-href);
 	        return false;
-	    });
-	});
+	 });
     
 </script>
 
