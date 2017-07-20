@@ -35,7 +35,8 @@ public class MemberController{
 		
 		//System.out.println("진짜끝");
 			//로그인성공
-			return "index2.html"; 			//logout만뜨는 화면으로 이동
+		
+			return "index.html"; 			//logout만뜨는 화면으로 이동
 		
 			
 	}
@@ -57,7 +58,7 @@ public class MemberController{
 	public String memJoin(MemberVO mo){
 		//System.out.println("login controller post시작");
 		new Service().join(mo);	
-		return "index2.html";
+		return "index.html";
 		
 	}
 
@@ -66,7 +67,7 @@ public class MemberController{
 	public String memUpdate(MemberVO mo){
 		System.out.println("Update controller post시작");
 		new Service().update(mo);	
-		return "index2.html";
+		return "index.html";
 		
 	}
 	
