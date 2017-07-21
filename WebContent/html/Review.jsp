@@ -8,6 +8,8 @@
 
 <script src="../js/rating.js"></script>
 <link href="../css/rating.css" rel="stylesheet">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
 
 <!--  외장 함수들 유용한것들로만 -->
@@ -44,7 +46,10 @@ window.onload = function() {
 </head>
 <body>
 <form action = "tempController.jsp" method = "post">
-평점 : <span class="star-input">
+
+<div class = "row">
+<div class ="col-*-*">
+<span class="star-input">
   <span class="input">
     <input type="radio" name="star-input" id="p1" value="1"><label for="p1">1</label>
     <input type="radio" name="star-input" id="p2" value="2"><label for="p2">2</label>
@@ -61,9 +66,14 @@ window.onload = function() {
     <input type="hidden" name="url"  id="url" value = '<%=request.getParameter("url")%>'>
   <output for="star-input"><b></b></output>
 </span><br/>
-댓글 : <br/>
-<textarea rows="20" cols="40" name = "review_comment"></textarea>
-<input type="submit" value="입력">
+<br><br>
+<textarea class = "input-lg  form-control"  name = "review_comment"></textarea>
+</div>
+</div>
+<div class = "row">
+<br><br>
+<input type="submit" class = "btn btn-primary btn-md" value="입력">
+</div>
 </form>
 </body>
 </html>
