@@ -105,11 +105,12 @@ public class MemberDAO {
 		PreparedStatement pstm = null;
 		try{
 			conn = getConnection();
-			pstm = conn.prepareStatement("update member set pwd=?, gender=?,m_brith=?,email=?");
+			pstm = conn.prepareStatement("update member set pwd=?, gender=?,m_birth=?,email=? where id=?");
 			pstm.setString(1, mvo.getPwd());
 			pstm.setInt(2, mvo.getGender());
 			pstm.setString(3, mvo.getM_birth());
 			pstm.setString(4, mvo.getEmail());
+			pstm.setString(5, mvo.getId());
 			pstm.executeUpdate();
 			
 		}catch (Exception e) {

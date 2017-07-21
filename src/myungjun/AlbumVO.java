@@ -13,6 +13,9 @@ public class AlbumVO {
 	private int artist_count;
 	private int rating_id;
 	private int count;
+	private String url;
+	private String info;
+	
 	public AlbumVO() {
 		super();
 	}
@@ -95,6 +98,18 @@ public class AlbumVO {
 				+ ", artist_id_1=" + artist_id_1 + ", artist_id_2=" + artist_id_2 + ", artist_id_3=" + artist_id_3
 				+ ", artist_id_4=" + artist_id_4 + ", artist_id_5=" + artist_id_5 + ", artist_id_6=" + artist_id_6
 				+ ", rating_id=" + rating_id + ", count=" + count + "]";
+	}
+	public String getUrl() {
+		return url;
+	}
+	public void setUrl(String url) {
+		this.url = url;
+	}
+	public String getInfo() {
+		return info;
+	}
+	public void setInfo(String info) {
+		this.info = info;
 	}
 	
 }

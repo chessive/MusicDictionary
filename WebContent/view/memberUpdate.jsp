@@ -73,6 +73,7 @@ table.memberUpdate td {
 			} 
 		}
 		
+		
 		return true;		
 }
 
@@ -101,7 +102,7 @@ table.memberUpdate td {
 		<table class="memberUpdate">
 			<tr>
 				<td id="title">아이디</td>
-				<td><input class="form-control" type="text" name="id" maxlength="50" id="id" value = nid >
+				<td><input class="form-control" type="text" name="id" maxlength="50" id="id" value = '<%=session.getAttribute("id") %>'  disabled="disabled">
 				     
 				</td>
 
@@ -109,12 +110,12 @@ table.memberUpdate td {
 
 			<tr>
 				<td id="title">비밀번호</td>
-				<td><input class="form-control" type="password" name="pwd" maxlength="50" value = npwd></td>
+				<td><input class="form-control" type="password" name="pwd" maxlength="50" value = '<%=session.getAttribute("pwd") %>'></td>
 			</tr>
 
 			<tr>
 				<td id="title">비밀번호 확인</td>
-				<td><input class="form-control"type="password" name="pwdcheck" maxlength="50" value = npwd>
+				<td><input class="form-control"type="password" name="pwdcheck" maxlength="50" value = '<%=session.getAttribute("pwd") %>'>
 				</td>
 			</tr>
 
@@ -126,7 +127,7 @@ table.memberUpdate td {
 			<tr>
 				<td id="title">생년월일</td>
 				<td>
-					<input class="form-control" name="m_birth" type="text" maxlength="10" placeholder="yyyy-mm-dd" value = nm_birth >
+					<input class="form-control" name="m_birth" type="text" maxlength="10" placeholder="yyyy-mm-dd" value = '<%=session.getAttribute("m_birth") %>' >
 <!-- 					<input class="form-control" name="date2" type="text" maxlength="10" placeholder="mm">
 					<input class="form-control" name="date3" type="text" maxlength="10" placeholder="dd"> -->
         		</td>
@@ -134,14 +135,14 @@ table.memberUpdate td {
 
 			<tr>
 				<td id="title">이메일</td>
-				<td><input type="text" class="form-control" name="email" maxlength="50" placeholder="e-mail" value = nemail >
+				<td><input type="text" class="form-control" name="email" maxlength="50" placeholder="e-mail" value ='<%=session.getAttribute("email") %>' >
 				</td>
 			</tr>
 		
 		</table>
 		
 		<br>
-		<input id = "submbt" type="submit" value="수정" disabled="disabled"/> 
+		<input id = "submbt" type="submit" value="수정" /> 
 		<input type="button" value="취소" onclick="history.back()">
 	</form>
 

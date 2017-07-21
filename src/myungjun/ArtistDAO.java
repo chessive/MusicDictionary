@@ -42,6 +42,10 @@ public class ArtistDAO {
 				artist.setMember_num(rs.getInt("MEMBER_NUM"));
 				artist.setRating_id(rs.getInt("RATING_ID"));
 				artist.setCount(rs.getInt("COUNT"));
+				
+				artist.setUrl(rs.getString("URL"));
+				artist.setInfo(rs.getString("INFO"));
+				
 				switch (artist.getMember_num()) {
 				case 11:
 					artist.setSinger_id_11(rs.getString("SINGER_ID_11"));

@@ -80,11 +80,11 @@ $(document).ready(function(){
 				
 				if(s=="ID와 PWD가 일치합니다."){
 					alert("회원 인증 성공");
-					$("#submbt").prop("disabled",false);
+					//$("#submbt").prop("disabled",true);
 					//$("#submbt").css("background-color", "#aaaaaa");
 				}else{
 					alert("회원 인증 실패");
-					$("#submbt").prop("disabled",true);
+					//$("#submbt").prop("disabled",false);
 					//$("#submbt").css("background-color", "#4CAF50");
 				}
 				
@@ -125,7 +125,7 @@ $(document).ready(function(){
 		</table>
 		
 		<br>
-		<input id = "submbt" type="submit" value="탈퇴" disabled="disabled"/> 
+		<input id = "submbt" type="submit" value="탈퇴" /> 
 		<input type="button" value="취소" onclick="goFirstForm()">
 	</form>
 

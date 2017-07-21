@@ -18,6 +18,11 @@ public class ArtistVO {
 	private String singer_id_11;
 	private int rating_id;
 	private int count;
+
+	private String url;
+	private String info;
+	
+	
 	public ArtistVO() {
 		super();
 	}
@@ -132,6 +137,18 @@ public class ArtistVO {
 				+ ", singer_id_6=" + singer_id_6 + ", singer_id_7=" + singer_id_7 + ", singer_id_8=" + singer_id_8
 				+ ", singer_id_9=" + singer_id_9 + ", singer_id_10=" + singer_id_10 + ", singer_id_11=" + singer_id_11
 				+ ", rating_id=" + rating_id + ", count=" + count + "]";
+	}
+	public String getUrl() {
+		return url;
+	}
+	public void setUrl(String url) {
+		this.url = url;
+	}
+	public String getInfo() {
+		return info;
+	}
+	public void setInfo(String info) {
+		this.info = info;
 	}
 	
 }

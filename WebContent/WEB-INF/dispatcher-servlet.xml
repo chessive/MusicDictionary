@@ -24,8 +24,8 @@
 
 	<bean id="viewResolver"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="prefix" value="/WebContent/view/" />
-		<property name="suffix" value="" />
+<!-- 		<property name="prefix" value="/WebContent/view/" />
+		<property name="suffix" value="" /> -->
 	</bean>
 	<!-- locale -> 클라이언트에 대한 환경변수 내용 저장 -->
 	<!-- localResolver 등록 -->
