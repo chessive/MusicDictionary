@@ -39,7 +39,8 @@ public class SongDAO {
 				song.setSong_id(rs.getString("SONG_ID"));
 				song.setName(rs.getString("NAME"));
 				song.setArtist_name(rs.getString("ARTIST_NAME"));
-				song.setPublish_date(rs.getString("PUBLISH_DATE"));
+				song.setPublish_date(rs.getString("PUBLISH_DATE").substring(0, rs.getString("PUBLISH_DATE").indexOf(" ")));
+
 				song.setPublisher_name(rs.getString("PUBLISHER_NAME"));
 				song.setAlbum_name(rs.getString("ALBUM_NAME"));
 				song.setAlbum_id(rs.getInt("ALBUM_ID"));

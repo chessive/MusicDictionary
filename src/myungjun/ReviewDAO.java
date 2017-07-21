@@ -71,7 +71,6 @@ public class ReviewDAO {
 			
 			// update
 			else{
-				System.out.println("elsefh emf");
 				
 				pstm = conn.prepareStatement("select rating from review where rating_id = ?");
 				pstm.setInt(1, review.getRating_id());
@@ -92,7 +91,6 @@ public class ReviewDAO {
 				pstm.executeQuery();
 				
 				pstm = conn.prepareStatement("update RATING set rating = ? where rating_id = ?");
-				System.out.println("sum = " + sum + " : count : " + count);
 				pstm.setInt(1, sum / count);
 				pstm.setInt(2, review.getRating_id());
 				pstm.executeQuery();
@@ -143,7 +141,7 @@ public class ReviewDAO {
 					review.setRating_id(rs.getInt("RATING_ID")); 
 					review.setRating(rs.getInt("RATING")); 
 					review.setReview_comment(rs.getString("REVIEW_COMMENT"));
-					
+					review.setComment_id(rs.getInt("CONTENT_ID"));
 					reviews.add(review);
 				}
 		}catch(Exception e){

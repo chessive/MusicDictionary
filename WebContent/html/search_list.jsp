@@ -19,6 +19,15 @@
 
 <!--  외장 함수들 유용한것들로만 -->
 <script type="text/javascript">
+
+	// Sorting 방법론
+	function nameSort(a, b) {
+	  if(a.name == b.name){ return 0} return  a.name > b.name ? 1 : -1;
+	}
+	function album_nameSort(a, b) {
+		  if(a.album_name == b.album_name){ return 0} return  a.album_name > b.album_name ? 1 : -1;
+	}
+
 	// Parameter 갖고오는 놈임. get 사용 가능.
 	var getUrlParameter = function getUrlParameter(sParam) {
 		var sPageURL = decodeURIComponent(window.location.search.substring(1)), sURLVariables = sPageURL
@@ -65,6 +74,7 @@
 		var param = {};
 		param.name = name;
 		param.menu = menu;
+		var rating;
 		
 		console.log(menu);
 		console.log(name);
@@ -115,11 +125,11 @@
 				type : "GET",
 				data : 	param,
 				success : function(data) {
-					console.log(data);
 					data = JSON.parse(data);
-					console.log(data);
+					data.sort(album_nameSort);
 					
 			   		data.forEach(function(item, index) {
+			   			
 			   			s = menu_template;
 			   			result_url = "result_page.jsp?menu=album&name=" + item.album_name;
  			   			s = s.replace("_site", result_url);
@@ -132,7 +142,6 @@
 			   		});			
 			   		$("#table_body").empty;					
 			   		$("#table_body").append(str);
-					console.log(str);
 				}
 			});
 		}		
@@ -150,15 +159,7 @@
 				success : function(data) {
 					console.log(data);
 					data = JSON.parse(data);
-					console.log(data);
-					/*
-					data.sort(function(a, b) {
-					    return a.song_index < b.song_index;
-					});
-*/
-					data.sort();
-
-					console.log(data);
+					data.sort(nameSort);
 					
 			   		data.forEach(function(item, index) {
 			   			s = menu_template;
@@ -192,7 +193,6 @@
 				success : function(data) {
 					console.log(data);
 					data = JSON.parse(data);
-					console.log(data);
 					
 			   		data.forEach(function(item, index) {
 			   			s = menu_template;

@@ -4,6 +4,7 @@ public class ReviewVO {
 	private int rating;
 	private String review_comment;
 	private int rating_id;
+	private int comment_id;
 	public ReviewVO() {
 		super();
 	}
@@ -29,9 +30,12 @@ public class ReviewVO {
 		this.rating_id = rating_id;
 	}
 
-	@Override
-	public String toString() {
-		return "ReviewVO [rating=" + rating + ", review_comment=" + review_comment + ", rating_id=" + rating_id + "]";
+	public int getComment_id() {
+		return comment_id;
+	}
+
+	public void setComment_id(int comment_id) {
+		this.comment_id = comment_id;
 	}
 
 	

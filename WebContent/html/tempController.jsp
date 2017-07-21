@@ -1,8 +1,22 @@
+<%@page import="javax.websocket.SendResult"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="myungjun.*"%>
 <%@page import="service.*"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
+
+
+<script type="text/javascript">
+$(document).ready(function() {
+
+	var rating_id = getUrlParameter('rating_id');
+	console.log(rating_id);
+	
+}); // ready 끝
+
+
+</script>
 
 <%
 
@@ -11,18 +25,22 @@ request.setCharacterEncoding("utf-8");
 int rating =0;
 rating= Integer.parseInt(request.getParameter("star-input"));
 String review_comment = request.getParameter("review_comment");
-//int rating_id = (int)(session.getValue("rating_id")); //희건아 rating_id 불러오는거에 따라 session으로 할지 request.getParameter로 할지 정해줘
-int rating_id =23;
+String rating_id = request.getParameter("rating_id");
+String url = request.getParameter("url");
+
+System.out.println("rating ID : " + rating_id);
+System.out.println("url : " + url);
+
 ReviewVO review = new ReviewVO();
 review.setRating(rating);
 review.setReview_comment(review_comment);
 //rating_id불러오기
-review.setRating_id(rating_id);
+review.setRating_id(Integer.parseInt(rating_id));
 //서비스객체생성
 ReviewService service = new ReviewService();
 service.reviewInsert(review);//삽입서비스
 
-RequestDispatcher rd =  request.getRequestDispatcher("Review.jsp");
-rd.forward(request, response);
+
+response.sendRedirect(request.getParameter("url"));
 
 %>

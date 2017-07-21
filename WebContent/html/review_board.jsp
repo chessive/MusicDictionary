@@ -18,49 +18,33 @@
 
 <!-- Custom CSS -->
 <link href="../css/style.css" rel="stylesheet">
-<script type="text/javascript">
-	// Parameter 갖고오는 놈임. get 사용 가능.
-	var getUrlParameter = function getUrlParameter(sParam) {
-		var sPageURL = decodeURIComponent(window.location.search.substring(1)), sURLVariables = sPageURL
-				.split('&'), sParameterName, i;
 
-		for (i = 0; i < sURLVariables.length; i++) {
-			sParameterName = sURLVariables[i].split('=');
-
-			if (sParameterName[0] === sParam) {
-				return sParameterName[1] === undefined ? true
-						: sParameterName[1];
-			}
-		}
-	};
-</script>	
+<%
+	String rating_id = request.getParameter("rating_id");
+%>
 	
 <script type="text/javascript">	
 $(document).ready(function() {
-
-	var rating_id = getUrlParameter('rating_id');
+	var rating_id = '<%=rating_id%>';
 	var result;		
 	var s, str="";
 	var param = {};
+
 	param.rating_id = rating_id;
-	console.log(rating_id);
-	menu_template_head = "<tr><<th>평점</th><th>댓글</th></tr>";
-	menu_template = "<tr ><td>_rating</td><td>_review_comment</td></tr>";
+	menu_template_head = "<tr><th>평점</th><th>댓글</th></tr>";
+	menu_template = "<tr><td  class = 'col-md-1'>_rating</td><td  class = 'col-md-6'>_review_comment</td></tr>";
 		$("#table_head").empty();
 		$("#table_head").append(menu_template_head);
-	$.ajax({
+
+		$.ajax({
 		url : "/gitProject_md/tempsearchreview.jsp",
 		type : "GET",
 		data : 	param,
 		success : function(data){
-			console.log(data);
 			data = JSON.parse(data);
 			data.forEach(function(item, ind) {
 				if(item.rating_id == rating_id){
 					result = item;
-					console.log(item);
-					console.log(result);
-	   		
 				}
 			});
 			data.forEach(function(item, index) {
@@ -82,9 +66,9 @@ $(document).ready(function() {
 </script>
 </head>
 <body>
-<div class="container  table-responsive">
-		<table id="table_menu" class="table  table-hover">
-			<thead id="table_head">
+<div class="container">
+		<table id="table_menu" class="table  table-hover  col-md-6">
+			<thead id="table_head" >
 			</thead>
 			<tbody id="table_body">
 			</tbody>
