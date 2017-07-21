@@ -9,7 +9,7 @@
 	
  	if(session.getAttribute("id")==null||id=="nosession")
 		result="fail";
- 	else result = "ok";
+ 	else result = "ok,"+id;
  %>
 
 

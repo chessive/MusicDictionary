@@ -6,9 +6,9 @@
 <html>
 <head>
 <title>회원가입</title>
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/font-awesome.min.css" media="screen" title="no title" >
-    <link rel="stylesheet" href="css/style.css" media="screen" title="no title" >
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/font-awesome.min.css" media="screen" title="no title" >
+    <link rel="stylesheet" href="../css/style.css" media="screen" title="no title" >
 <style type="text/css">
 table.memberJoin {
     border-collapse: seperate;
@@ -146,6 +146,7 @@ $(document).ready(function(){
 
 </head>
 <body>
+<div class = "col-md-12">
 	<br>
 	<br>
 	<b><font size="6" color="gray">회원가입</font></b>
@@ -153,9 +154,10 @@ $(document).ready(function(){
 	<br>
 	<br>
 
+<div class = "form-group">
 	<!-- 입력한 값을 전송하기 위해 form 태그를 사용한다 -->
 	<!-- 값(파라미터) 전송은 POST 방식, 전송할 페이지는 JoinPro.jsp -->
-	<form action="memjoin.do" name="userInfo" method="POST" onsubmit="return checkValue()">
+	<form action="memjoin.do" name="userInfo" method="POST"  onsubmit="return checkValue()"  class = "form-horizontal">
 		<table class="memberJoin">
 			<tr>
 				<td id="title">아이디</td>
@@ -202,7 +204,8 @@ $(document).ready(function(){
 		<input id = "submbt" type="submit" value="가입" disabled="disabled"/> 
 		<input type="button" value="취소" onclick="goFirstForm()">
 	</form>
-
+	</div>
+</div>
 </body>
 </html>
 

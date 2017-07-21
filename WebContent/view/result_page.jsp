@@ -17,6 +17,42 @@
 <!-- Custom CSS -->
 <link href="../css/style.css" rel="stylesheet">
 
+
+<!-- Session check -->
+<script type="text/javascript">
+$(document).ready(function(){
+	var memu_template="";
+
+	console.log("ajax시작");
+		$.ajax({
+			
+			url : "connectionCheck.jsp",
+			type : "GET",
+			success : function(data) {
+				
+//				var s = data.trim();
+				var data = data.trim();
+				var s= data.split(',');
+				
+				if(s[0]=="fail"){
+					memu_template = "<li id = 'li8' class = 'active'><a href='LoginView.html'>로그인</a></li><li id = 'li9'><a href='memberJoinForm.jsp'>회원가입</a></li>";
+					$("#login").empty();
+					$("#login").append(memu_template);
+					
+				}else if(s[0]=="ok"){
+					memu_template = "<li id = 'li10' class = 'active'><a href='Logout.jsp'>로그아웃</a></li><li id = 'li11'><a href='memberDelete.jsp'>회원탈퇴</a></li><li id = 'li12'><a href='memberUpdate.jsp'>회원정보수정</a>";
+					
+					$("#login").empty();
+					$("#login").append(memu_template);
+					$("#id-status").text(s[1] + "님 환영합니다!");
+					console.log("s[1] : " + s[1]);
+				}
+		}
+	});
+})
+</script>
+
+
 <!--  외장 함수들 유용한것들로만 -->
 <script type="text/javascript">
 
@@ -573,7 +609,15 @@
 			<li id="li6"><a href="search_list.jsp?menu=writer">작사가</a></li>
 			<li id="li7"><a href="search_list.jsp?menu=remaker">편곡가</a></li>
 		</ul>
+		
+		<div class = "nav  navbar-brand navbar-right"  id = "id-status">
+		</div>
 
+			<!--  login -->
+		    <ul class="nav navbar-nav navbar-right"  id="login">
+    		</ul>
+			<!--  login -->
+			
 
 	</div>
 	</nav>
