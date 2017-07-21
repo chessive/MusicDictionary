@@ -411,7 +411,7 @@
 		  	$("#table_body").empty();
 
 			$.ajax({
-				url : "/gitProject_md/html/Review.jsp",
+				url : "/gitProject_md/view/Review.jsp",
 				type : "GET",
 				data : 	sub_param,
 				success : function(data){
